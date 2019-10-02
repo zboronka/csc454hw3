@@ -1,0 +1,35 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	/3fdf28bc/
+ATTACH	Makefile	/^ATTACH=-connect com.sun.jdi.SocketAttach:hostname=localhost,port=8000$/;"	m
+CC	Makefile	/^CC=javac$/;"	m
+CLASS	Makefile	/^CLASS=hw2$/;"	m
+DEBUGGER	Makefile	/^DEBUGGER=jdb$/;"	m
+DFLAGS	Makefile	/^DFLAGS=-agentlib:jdwp=transport=dt_socket,address=8000,server=y,suspend=n$/;"	m
+FLAGS	Makefile	/^FLAGS=-g$/;"	m
+JVM	Makefile	/^JVM=java$/;"	m
+LIBS	Makefile	/^LIBS=$/;"	m
+Memory	Memory.java	/^public class Memory implements MooreMachine {$/;"	c
+MooreMachine	MooreMachine.java	/^interface MooreMachine {$/;"	i
+SOURCE	Makefile	/^SOURCE=*.java$/;"	m
+TARGET	Makefile	/^TARGET=$/;"	m
+XOR	XOR.java	/^	public XOR() {$/;"	m	class:XOR
+XOR	XOR.java	/^public class XOR implements MooreMachine {$/;"	c
+all	Makefile	/^all:$/;"	t
+debug	Makefile	/^debug:$/;"	t
+delta	Memory.java	/^	public void delta(boolean ...b) {$/;"	m	class:Memory
+delta	MooreMachine.java	/^	void delta(boolean ...b);$/;"	m	interface:MooreMachine
+delta	XOR.java	/^	public void delta(boolean ...b) {$/;"	m	class:XOR
+hw3	hw3.java	/^public class hw3 {$/;"	c
+lambda	Memory.java	/^	public boolean lambda() {$/;"	m	class:Memory
+lambda	MooreMachine.java	/^	boolean lambda();$/;"	m	interface:MooreMachine
+lambda	XOR.java	/^	public boolean lambda() {$/;"	m	class:XOR
+main	hw3.java	/^	public static void main(String[] args) {$/;"	m	class:hw3
+q1	Memory.java	/^	private boolean q1;$/;"	f	class:Memory	file:
+q2	Memory.java	/^	private boolean q2;$/;"	f	class:Memory	file:
+server	Makefile	/^server:$/;"	t
+state	XOR.java	/^	private boolean state;$/;"	f	class:XOR	file:
