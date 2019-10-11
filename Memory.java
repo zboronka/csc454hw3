@@ -1,13 +1,15 @@
-public class Memory implements MooreMachine {
-	private boolean q1 = false;
-	private boolean q2 = false;
+import java.util.ArrayList;
 
-	public boolean lambda() {
+public class Memory implements MooreMachine<Boolean, Boolean> {
+	private Boolean q1 = false;
+	private Boolean q2 = false;
+
+	public Boolean lambda() {
 		return q1;
 	}
 
-	public void delta(boolean ...b) {
+	public void delta(ArrayList<Boolean> b) {
 		q1 = q2;
-		q2 = b[0];
+		q2 = b.get(0);
 	}
 }
