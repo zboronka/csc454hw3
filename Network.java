@@ -3,41 +3,65 @@ import java.util.ArrayList;
 public class Network<I,O> implements MooreMachine<I,O> {
 	private ArrayList<Couple<?>> couples = new ArrayList<Couple<?>>();
 	private MooreMachine<I,?> input;
-	private Couple<O> output;
+	private MooreMachine<?,O> output;
+
 	private int currentTick = 0;
 	private int ticks;
+
+	private ArrayList<String> coupleOutput = new ArrayList<>();
 	private boolean verbose = false;
 
-	public Network(MooreMachine<I,?> in, Couple<O> out, int t) {
+	private final int LINEWIDTH = 30;
+
+	public Network(MooreMachine<I,?> in, MooreMachine<?,O> out, int t) {
 		output = out;
-		output.pipe();
 		input = in;
 
 		ticks = t;
 	}
 
 	public O lambda() {
-		return output.get().get(0);
+		return output.lambda();
 	}
 
 	public void delta(ArrayList<I> in) {
-		input.delta(in);
-		if(verbose) {
-			System.out.println(input.toString() + " ran delta");
-		}
-
 		for(int tick = 0; tick < ticks; tick++) {
 			if(verbose) {
-				System.out.println("\n===============Tick " + currentTick + "===============");
+				String tickCounter = "Tick " + currentTick;
+				int left = (LINEWIDTH-tickCounter.length())/2;
+				int right = (LINEWIDTH-tickCounter.length())%2 == 0 ? left : left + 1;
+
+				System.out.println("\n╔" + line("═", left) + tickCounter + line("═", right) + "╗");
 			}
-			for (Couple<?> c : couples) {
+
+			for(Couple<?> c : couples) {
 				c.pipe();
+				if(verbose) {
+					coupleOutput.addAll(c.getOutput());
+				}
 			}
 			
-			for (Couple<?> c : couples) {
+			input.delta(in);
+			if(verbose) {
+				coupleOutput.add("║" + input.toString() + " ran delta");
+			}
+
+			for(Couple<?> c : couples) {
 				c.deltas();
+				if(verbose) {
+					coupleOutput.addAll(c.getOutput());
+				}
+			}
+
+			if(verbose) {
+				for(String s : coupleOutput) {
+					int right = LINEWIDTH-s.length();
+					System.out.println(s + line(" ", right) + " ║");
+				}
+				System.out.println("╚" + line("═", LINEWIDTH) + "╝");
 			}
 			
+			coupleOutput.clear();
 			currentTick++;
 		}
 	}
@@ -53,7 +77,15 @@ public class Network<I,O> implements MooreMachine<I,O> {
 		}
 	}
 
-	public void step() {
-		ticks = ticks == 3 ? 1 : 3;
+	public void step(int t) {
+		ticks = t;
+	}
+
+	private String line(String c, int num) {
+		String ret = "";
+		for(int i = 0; i < num; i++) {
+			ret += c;
+		}
+		return ret;
 	}
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 public class hw3 {
 	public static void main(String[] args) {
 		String command = "";
+		boolean step = false;
 		ArrayList<Boolean> input = new ArrayList<Boolean>();
 
 		Scanner sc = new Scanner(System.in);
@@ -21,7 +22,7 @@ public class hw3 {
 		two.addInput(xor2);
 		two.addOutput(m);
 
-		Network<Boolean,Boolean> net = new Network<>(xor1, two, 3);
+		Network<Boolean,Boolean> net = new Network<>(xor1, xor2, 3);
 		net.addCouple(one);
 		net.addCouple(two);
 
@@ -35,7 +36,9 @@ public class hw3 {
 				net.verbose();
 			}
 			else if(command.compareTo("step") == 0) {
-				net.step();
+				int t = step ? 3 : 1;
+				net.step(t);
+				step = !step;
 			}
 			else {
 				input.add(command.charAt(0) == '1');
