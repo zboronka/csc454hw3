@@ -15,7 +15,7 @@ public class Couple<I> {
 		for (MooreMachine<?,I> i : inputs) {
 			output.add(i.lambda());
 			if(verbose) {
-				outputString.add("║" + i.toString() + " lambda = " + output.get(output.size()-1));
+				outputString.add(i.toString() + " lambda = " + output.get(output.size()-1));
 			}
 		}
 	}
@@ -25,7 +25,7 @@ public class Couple<I> {
 		for (MooreMachine<I,?> o : outputs) {
 			o.delta(output);
 			if(verbose) {
-				outputString.add("║" + o.toString() + " ran delta");
+				outputString.add(o.toString() + " ran delta");
 			}
 		}
 	}

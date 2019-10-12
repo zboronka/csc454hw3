@@ -13,6 +13,10 @@ public class Network<I,O> implements MooreMachine<I,O> {
 
 	private final int LINEWIDTH = 30;
 
+	private final String BOXC = "\u001b[31m";
+	private final String TICKC = "\u001b[33m";
+	private final String RESETC = "\u001b[39;49m";
+
 	public Network(MooreMachine<I,?> in, MooreMachine<?,O> out, int t) {
 		output = out;
 		input = in;
@@ -31,7 +35,7 @@ public class Network<I,O> implements MooreMachine<I,O> {
 				int left = (LINEWIDTH-tickCounter.length())/2;
 				int right = (LINEWIDTH-tickCounter.length())%2 == 0 ? left : left + 1;
 
-				System.out.println("\n╔" + line("═", left) + tickCounter + line("═", right) + "╗");
+				System.out.println("\n" + BOXC + "╔" + line("═", left) + TICKC + tickCounter + BOXC + line("═", right) + "╗");
 			}
 
 			for(Couple<?> c : couples) {
@@ -43,7 +47,7 @@ public class Network<I,O> implements MooreMachine<I,O> {
 			
 			input.delta(in);
 			if(verbose) {
-				coupleOutput.add("║" + input.toString() + " ran delta");
+				coupleOutput.add(input.toString() + " ran delta");
 			}
 
 			for(Couple<?> c : couples) {
@@ -56,9 +60,9 @@ public class Network<I,O> implements MooreMachine<I,O> {
 			if(verbose) {
 				for(String s : coupleOutput) {
 					int right = LINEWIDTH-s.length();
-					System.out.println(s + line(" ", right) + " ║");
+					System.out.println("║" + RESETC + s + line(" ", right) + BOXC + "║");
 				}
-				System.out.println("╚" + line("═", LINEWIDTH) + "╝");
+				System.out.println("╚" + line("═", LINEWIDTH) + "╝" + RESETC);
 			}
 			
 			coupleOutput.clear();

@@ -2,6 +2,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class hw3 {
+	private static final String PROMPT = "\u001b[32mnet_in# \u001b[39;49m";
 	public static void main(String[] args) {
 		String command = "";
 		boolean step = false;
@@ -26,6 +27,7 @@ public class hw3 {
 		net.addCouple(one);
 		net.addCouple(two);
 
+		System.out.print(PROMPT);
 		while(sc.hasNextLine()) {
 			input.clear();
 			command = sc.nextLine();
@@ -47,6 +49,8 @@ public class hw3 {
 				System.out.println("Network lambda = " + net.lambda());
 				net.delta(input);
 			}
+
+			System.out.print(PROMPT);
 		}
 	}
 }
